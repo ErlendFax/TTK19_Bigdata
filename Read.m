@@ -7,8 +7,12 @@ T = s.data';
 coeff = pca(T);
 %%
 
-[~,labels] = getLabel(5);
+[x,labels] = getLabel(5);
 
 pcaTimeSeries(T,labels);
 
-[theta,w,cw,ssqdif,yres] = plsr(coeff(:,[0:getLabelIndex(65),getLabelIndex(67):end]), coeff(:,getLabelIndex(66)),1, 2, 2)
+x1 = getLabelIndex('65')
+x2 = getLabelIndex('67')
+x3 = getLabelIndex('66')
+
+[theta,w,cw,ssqdif,yres] = plsr(T(:,x1), T(:,x3),1, 1, 2); %[0:x1,x2:end]
